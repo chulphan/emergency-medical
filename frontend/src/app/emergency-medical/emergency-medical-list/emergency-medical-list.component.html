@@ -4,6 +4,7 @@
         rowspan="2"
          style="text-align: center; cursor: pointer"
         *ngFor="let emergency of emergencyList"
+        (click)="goDetail(emergency.emergencyId)"
     >
         <div>
             <h1 style="margin-bottom: 0;">{{emergency.emergencyName}}</h1><br>

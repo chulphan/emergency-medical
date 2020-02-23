@@ -15,4 +15,8 @@ export class EmergencyMedicalService {
   fetchEmergencyMedicalList(params: HttpParams) {
     return this.http.get(`${this.baseURL}/hospitals`, {params});
   }
+
+  fetchEmergencyMedical(emergencyId: string) {
+    return this.http.get(`${this.baseURL}/hospitals/${emergencyId}`);
+  }
 }
