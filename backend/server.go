@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
+	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -15,20 +15,19 @@ import (
 )
 
 type Emergency struct {
-	DutyAddr      string `json:"dutyAddr"`
-	DutyEmcls     string `json:"dutyEmcls"`
-	DutyEmclsName string `json:"dutyEmclsName"`
-	DgidIdName    string `json:"dgidIdName"`
-	DutyName      string `json:"dutyName"`
-	DutyTel1      string `json:"dutyTel1"`
-	DutyTel3      string `json:"dutyTel3"`
-	Hptid         string `json:"hpid"`
-	DutyInf       string `json:"dutyInf"`
+	DutyAddr      string `json:"emergencyAddress"`
+	DutyEmclsName string `json:"emergencyCategory"`
+	DutyName      string `json:"emergencyName"`
+	DgidIdName    string `json:"medicalList"`
+	DutyTel1      string `json:"emergencyTel1"`
+	DutyTel3      string `json:"emergencyTel3"`
+	Hptid         string `json:"emergencyId"`
+	DutyInf       string `json:"emergencyInfo"`
 }
 
 const (
 	DB_URI     = "mongodb://localhost:27017"
-	NUM_OF_ROW = 9
+	NUM_OF_ROW = 4
 )
 
 func main() {
