@@ -9,7 +9,7 @@ import { generateURL } from '../shared/shared';
 export class EmergencyMedicalService {
   public baseURL;
   constructor(private http: HttpClient) {
-    this.baseURL = generateURL('dev');
+    this.baseURL = generateURL('prod');
   }
 
   fetchEmergencyMedicalList(params: HttpParams) {

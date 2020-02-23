@@ -7,6 +7,7 @@ export class EmergencyMedical {
     emergencyId: string;
     emergencyPhpId: string;
     emergencyInfo: string;
+    medicalList: string;
 
     constructor(
         emergencyAddress,
@@ -16,7 +17,8 @@ export class EmergencyMedical {
         emergencyTel3,
         emergencyId,
         emergencyPhpId,
-        emergencyInfo
+        emergencyInfo,
+        medicalList
     ) {
         this.emergencyAddress = emergencyAddress;
         this.emergencyCategory = emergencyCategory;
@@ -26,5 +28,6 @@ export class EmergencyMedical {
         this.emergencyId = emergencyId;
         this.emergencyPhpId = emergencyPhpId;
         this.emergencyInfo = emergencyInfo;
+        this.medicalList = medicalList;
     }
 }
