@@ -1,21 +1,20 @@
 <mat-grid-list cols="2" rowHeight="300">
     <mat-grid-tile
-        colspan="1"
-        rowspan="2"
-         style="text-align: center; cursor: pointer"
+        colspan="2"
+         style="text-align: center; cursor: pointer;"
         *ngFor="let emergency of emergencyList"
         (click)="goDetail(emergency.emergencyId)"
     >
-        <div>
+        <div style="padding: 20px; width: 80%">
             <h1 style="margin-bottom: 0;">{{emergency.emergencyName}}</h1><br>
             <h3>{{emergency.emergencyCategory}}</h3>
             <p style="font-size: 16px;">{{emergency.emergencyAddress}}</p>
             <span style="font-size: 16px;">{{emergency.emergencyTel1}}</span><br>
             <span style="font-size: 16px;">{{emergency.emergencyTel3}}</span>
-            <p style="padding: 12px; font-size: 16px;">
+            <p style="margin: 0 auto; padding: 12px; font-size: 16px; line-height: 2rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                 {{emergency.medicalList}}
             </p>
         </div>
     </mat-grid-tile>
-    <mat-icon (click)="fetchEmergencyMedicalList()" style="position: absolute; cursor: pointer; right: 0; bottom: 0; z-index: 1000;">expand_more</mat-icon>
+    <mat-icon (click)="fetchEmergencyMedicalList()" style="position: absolute; cursor: pointer; right: 15px; bottom: 15px; z-index: 1000;">expand_more</mat-icon>
 </mat-grid-list>

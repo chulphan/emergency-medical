@@ -1,24 +1,24 @@
-<mat-card *ngIf="emergencyMedical" style="height: 600px; padding: 48px;">
-    <mat-card-header>
-        <mat-card-title style="font-size: 32px; text-align: center; line-height: normal;">{{emergencyMedical.emergencyName}}</mat-card-title>
+<mat-card *ngIf="emergencyMedical" style="height: 565px; padding: 48px; text-align: center; padding-top: 90px;">
+    <mat-card-header style="display: block;">
+        <mat-card-title style="font-size: 32px; line-height: normal;">{{emergencyMedical.emergencyName}}</mat-card-title>
         <mat-card-subtitle style="font-size: 24px; margin-top: 32px;">{{emergencyMedical.emergencyCategory}}</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content style="margin: 0 16px;">
-        <p style="width: max-content;">
+    <mat-card-content style="margin: 0 20px;">
+        <p style="margin-top:20px;">
             <span style="font-size: 20px;">전화번호1: </span>
             <span style="font-size: 20px;">{{emergencyMedical.emergencyTel1}}</span>
         </p>
-        <p style="width: max-content;">
+        <p style="margin-top:20px;">
             <span style="font-size: 20px;">전화번호2: </span>
             <span style="font-size: 20px;">{{emergencyMedical.emergencyTel3}}</span>
         </p>
-        <p style="font-size: 20px;">  
+        <p style="font-size: 20px; margin-top: 20px;">  
             {{emergencyMedical.emergencyAddress}}
         </p>
-        <p style="font-size: 20px;">
+        <p style="font-size: 20px; margin-top: 20px;">
             {{emergencyMedical.medicalList}}
         </p>
-        <p style="font-size: 20px;">
+        <p style="font-size: 20px; margin-top: 20px;">
             {{emergencyMedical.emergencyInfo || ""}}
         </p>
     </mat-card-content>
