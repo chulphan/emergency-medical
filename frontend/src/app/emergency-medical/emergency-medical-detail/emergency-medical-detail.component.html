@@ -1,4 +1,4 @@
-<mat-card *ngIf="emergencyMedical" style="height: 565px; padding: 12px; text-align: center; padding-top: 90px;">
+<mat-card *ngIf="emergencyMedical" style="height: 100%; padding: 12px; text-align: center; margin-bottom: 20px;">
     <mat-card-header style="display: block;">
         <mat-card-title style="font-size: 32px; line-height: normal;">{{emergencyMedical.emergencyName}}</mat-card-title>
         <mat-card-subtitle style="font-size: 24px; margin-top: 32px;">{{emergencyMedical.emergencyCategory}}</mat-card-subtitle>
@@ -15,10 +15,10 @@
         <p style="font-size: 20px; margin-top: 20px;">  
             {{emergencyMedical.emergencyAddress}}
         </p>
-        <div style="font-size: 20px; margin-top: 20px;" [innerHTML]="makeMedicalList(emergencyMedical.medicalList)">
+        <div style="font-size: 14px; margin-top: 20px;" [innerHTML]="makeMedicalList(emergencyMedical.medicalList)">
         </div>
-        <p style="font-size: 20px; margin-top: 20px;">
-            {{emergencyMedical.emergencyInfo || ""}}
-        </p>
+        <div style="font-size: 14px; margin-top: 20px;">
+            <p>{{emergencyMedical.emergencyInfo || ""}}</p>
+        </div>
     </mat-card-content>
 </mat-card>
