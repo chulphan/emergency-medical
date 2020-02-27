@@ -11,6 +11,7 @@ import { EmergencyMedical } from '../model/emergency-medical-model';
 export class EmergencyMedicalDetailComponent implements OnInit {
 
   emergencyMedical: EmergencyMedical;
+  htmlMedicalList: string;
 
   constructor(private emergencyMedicalService: EmergencyMedicalService, private activatedRoute: ActivatedRoute) { }
 
@@ -23,6 +24,18 @@ export class EmergencyMedicalDetailComponent implements OnInit {
     this.emergencyMedicalService.fetchEmergencyMedical(emergencyId).subscribe((emergencyMedicalRes: EmergencyMedical) => {
       this.emergencyMedical = emergencyMedicalRes;
     });
+  }
+
+  makeMedicalList(medicalList: string) {
+    const splitedByMedicalListByComma = medicalList.split(',');
+    const htmlMedicalList = splitedByMedicalListByComma.map((medical, index) => {
+      if (index !== 0 && index % 4 == 0) {
+        return `<span>${medical}</span><br/>`;
+      }
+      return `<span>${medical}</span> `;
+    });
+    // this.htmlMedicalList = htmlMedicalList.join('');
+    return htmlMedicalList.join('');
   }
 
 }
