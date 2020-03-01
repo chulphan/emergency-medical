@@ -57,7 +57,7 @@ func EmergencyScrapper(c echo.Context) error {
 
 	for i := 0; i < totalRequest; i++ {
 		go getHospitalItemsByNumRow(baseURL, i, resultChan)
-		time.Sleep(time.Second)
+		time.Sleep(time.Second / 10)
 	}
 
 	for i := 0; i < totalRequest; i++ {
