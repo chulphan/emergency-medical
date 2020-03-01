@@ -6,6 +6,10 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/chulphan/emergency-medical/backend/scrapper"
+
+	"github.com/chulphan/emergency-medical/backend/model"
+
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 
@@ -13,17 +17,6 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
-
-type Emergency struct {
-	DutyAddr      string `json:"emergencyAddress"`
-	DutyEmclsName string `json:"emergencyCategory"`
-	DutyName      string `json:"emergencyName"`
-	DgidIdName    string `json:"medicalList"`
-	DutyTel1      string `json:"emergencyTel1"`
-	DutyTel3      string `json:"emergencyTel3"`
-	Hptid         string `json:"emergencyId"`
-	DutyInf       string `json:"emergencyInfo"`
-}
 
 const (
 	DB_URI     = "mongodb://localhost:27017"
@@ -39,6 +32,7 @@ func main() {
 
 	e.GET("/api/v1/hospitals", FetchHospitals)
 	e.GET("/api/v1/hospitals/:id", FetchHospital)
+	e.GET("/api/v1/scrapper", scrapper.EmergencyScrapper)
 
 	e.Logger.Fatal(e.Start(":1323"))
 }
@@ -66,7 +60,7 @@ func FetchHospitals(c echo.Context) error {
 
 	collection := client.Database("emergency").Collection("emergency_list")
 
-	var emergencyList []*Emergency
+	var emergencyList []*model.Emergency
 
 	cur, err := collection.Find(context.TODO(), bson.M{}, findOptions)
 
@@ -75,7 +69,7 @@ func FetchHospitals(c echo.Context) error {
 	}
 
 	for cur.Next(context.TODO()) {
-		var elem Emergency
+		var elem model.Emergency
 		err := cur.Decode(&elem)
 		if err != nil {
 			log.Fatal(err)
@@ -103,7 +97,7 @@ func FetchHospital(c echo.Context) error {
 
 	collection := client.Database("emergency").Collection("emergency_list")
 
-	var emergency Emergency
+	var emergency model.Emergency
 	result := collection.FindOne(context.TODO(), bson.M{"hptid": hospitalId})
 	result.Decode(&emergency)
 
