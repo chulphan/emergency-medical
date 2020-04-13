@@ -11,6 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -29,7 +30,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatGridListModule,
     MatToolbarModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

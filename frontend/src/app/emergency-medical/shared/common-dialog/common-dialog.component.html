@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>{{data.searchPhrase}} 의 검색결과 ({{data.searchList.length}}건)</h1>
+<div mat-dialog-content>
+    <mat-form-field *ngFor='let hospital of data.searchList'>
+        <mat-label>
+            <h2>{{hospital.emergencyName}}</h2>
+        </mat-label>
+        <h3>{{hospital.emergencyCategory}}</h3>
+        <span style="font-size: 16px">{{hospital.emergencyTel1}}</span><br />
+        <span style="font-size: 16px">{{hospital.emergencyTel3}}</span>
+        <p style="font-size: 16px">{{hospital.emergencyAddress}}</p>
+    </mat-form-field>
+</div>
+<!-- <div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div> -->

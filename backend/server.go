@@ -2,9 +2,12 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
 
 	"github.com/chulphan/emergency-medical/backend/scrapper"
 
@@ -32,6 +35,7 @@ func main() {
 
 	e.GET("/api/v1/hospitals", FetchHospitals)
 	e.GET("/api/v1/hospitals/:id", FetchHospital)
+	e.GET("/api/v1/hospitals/:search/search", SearchHospitals)
 	e.GET("/api/v1/scrapper", scrapper.EmergencyScrapper)
 
 	e.Logger.Fatal(e.Start(":1323"))
@@ -102,4 +106,45 @@ func FetchHospital(c echo.Context) error {
 	result.Decode(&emergency)
 
 	return c.JSON(http.StatusOK, emergency)
+}
+
+func SearchHospitals(c echo.Context) error {
+	searchPhrase := c.Param("search")
+	clientOptions := options.Client().ApplyURI(DB_URI)
+	client, err := mongo.Connect(context.TODO(), clientOptions)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = client.Ping(context.TODO(), nil)
+
+	collection := client.Database("emergency").Collection("emergency_list")
+
+	var searchedEmergencyList []*model.Emergency
+
+	// MongoDB.. /.*target.*/ <==> where phrase LIKE %target%
+	filter := primitive.Regex{Pattern: ".*" + searchPhrase + ".*"}
+
+	cur, err := collection.Find(context.TODO(), bson.M{"dutyName": filter})
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for cur.Next(context.TODO()) {
+		var elem model.Emergency
+		err := cur.Decode(&elem)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(elem)
+		searchedEmergencyList = append(searchedEmergencyList, &elem)
+	}
+
+	if err := cur.Err(); err != nil {
+		log.Fatal(err)
+	}
+
+	return c.JSON(http.StatusOK, searchedEmergencyList)
 }

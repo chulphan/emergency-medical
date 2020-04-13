@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { generateURL } from '../shared/shared';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -9,14 +10,19 @@ import { generateURL } from '../shared/shared';
 export class EmergencyMedicalService {
   public baseURL;
   constructor(private http: HttpClient) {
-    this.baseURL = generateURL('dev');
+    const currentMode = environment.production ? 'prod' : 'dev';
+    this.baseURL = generateURL(currentMode);
   }
 
   fetchEmergencyMedicalList(params: HttpParams) {
-    return this.http.get(`${this.baseURL}/hospitals`, {params});
+    return this.http.get(`${this.baseURL}/hospitals`, { params });
   }
 
   fetchEmergencyMedical(emergencyId: string) {
     return this.http.get(`${this.baseURL}/hospitals/${emergencyId}`);
+  }
+
+  searchEmergencyList(searchPhrase: string) {
+    return this.http.get(`${this.baseURL}/hospitals/${searchPhrase}/search`);
   }
 }

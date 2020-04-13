@@ -10,11 +10,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { EmergencyMedicalRoutingModule } from './emergency-medical-routing.module';
 import { EmergencyMedicalListComponent } from './emergency-medical-list/emergency-medical-list.component';
 import { EmergencyMedicalDetailComponent } from './emergency-medical-detail/emergency-medical-detail.component';
+import { CommonDialogComponent } from './shared/common-dialog/common-dialog.component';
 
 
 
 @NgModule({
-  declarations: [EmergencyMedicalListComponent, EmergencyMedicalDetailComponent],
+  declarations: [EmergencyMedicalListComponent, EmergencyMedicalDetailComponent, CommonDialogComponent],
   imports: [
     CommonModule,
     RouterModule,

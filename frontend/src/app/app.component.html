@@ -2,9 +2,12 @@
   <mat-toolbar-row>
     <span (click)="goMain()" style="cursor: pointer;">응급실 진료목록</span>
     <span class="spacer"></span>
-    <mat-icon style="cursor: pointer;" aria-hidden="false">search</mat-icon>
+    <mat-icon style="cursor: pointer;" aria-hidden="false" (click)="toggleSearchBar()">search</mat-icon>
   </mat-toolbar-row>
 </mat-toolbar>
+<div *ngIf="isSearchBarOpen" style="display: flex;">
+  <input type="text" (keyup.enter)="executeSearch($event)" placeholder="검색어를 입력해주세요" name="searchBar" class="searchBar">
+</div>
 <router-outlet></router-outlet>
 <footer>
   <mat-toolbar color="primary">
